@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import scrolledtext
 from tkinter import *
-from controller import controller
 
 # Importing the controller for interaction
 import controller
@@ -13,7 +12,7 @@ WELCOME_TEXT = "Welcome User!"
 
 def process_input(input_text):
 	# This is where the call to the controller must be made
-	return input_text
+	return controller.interface(input_text)
 
 
 def control():

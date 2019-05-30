@@ -29,7 +29,7 @@ class calculator:
 
 	def divide(self, operand1, operand2):
 		if operand2 == 0:
-			print "Divide by zero error"
+			print ("Divide by zero error")
 			return
 		return operand1 / operand2
 
