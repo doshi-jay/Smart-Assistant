@@ -1,8 +1,9 @@
 import calculator
+import re
 
 CALCULATE = "calculate"
 
-class controller:
+class Controller:
 
 	def interface(self, input_):
 		if input_.startswith(CALCULATE):

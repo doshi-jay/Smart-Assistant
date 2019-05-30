@@ -3,7 +3,7 @@ from tkinter import scrolledtext
 from tkinter import *
 
 # Importing the controller for interaction
-import controller
+from controller import Controller
 
 ENTER_COMMAND = "Please enter the command:"
 OUTPUT = "Output:\n"
@@ -12,6 +12,7 @@ WELCOME_TEXT = "Welcome User!"
 
 def process_input(input_text):
 	# This is where the call to the controller must be made
+	controller = Controller()
 	return controller.interface(input_text)
 
 
