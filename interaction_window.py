@@ -15,7 +15,7 @@ def control():
 	if input_text.split("Please enter the command!")[0] != "":
 		result = "Please enter the command in the proper format!"
 	else:		
-		input_text = "".join(input_text.split('Please enter the command!\n')[1:]).lstrip()
+		input_text = "".join(input_text.split('Please enter the command!')[1:]).lstrip()
 		result = process_input(input_text)
 	update_output(input_text, result)
 	refresh_input_box()
