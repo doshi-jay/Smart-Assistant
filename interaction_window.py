@@ -6,7 +6,7 @@ from controller import controller
 # Importing the controller for interaction
 import controller
 
-ENTER_COMMAND = "Please enter the command:\n"
+ENTER_COMMAND = "Please enter the command:"
 OUTPUT = "Output:\n"
 TITLE = "Smart Assistant!"
 WELCOME_TEXT = "Welcome User!"
@@ -18,22 +18,28 @@ def process_input(input_text):
 
 def control():
 	input_text = txt.get(1.0, END)
-	input_text = input_text.split(ENTER_COMMAND)[1]
-	update_output(input_text, process_input(input_text))
+	if input_text.split(ENTER_COMMAND)[0] != "":
+		result = "Please enter the command in the proper format!"
+	else:		
+		input_text = "".join(input_text.split(ENTER_COMMAND)[1:]).lstrip()
+		result = process_input(input_text)
+	update_output(input_text, result)
 	refresh_input_box()
 	
 
 def update_output(input_text, result):
 	output_text = "User: " + input_text + "\n" + "SAss: " + result + "\n"
 	output.configure(state=tk.NORMAL)
-	output.insert(tk.INSERT, output_text)
+	output.insert(tk.INSERT, "User: " + input_text.rstrip() + "\n", "input")
+	output.insert(tk.INSERT, "SAss: " + result.rstrip() + "\n", "output")
+	output.tag_config('input', foreground='darkblue')
+	output.tag_config('output', foreground='green')
 	output.configure(state=tk.DISABLED)
 
 
 def refresh_input_box():
 	txt.delete(1.0, END)
 	txt.insert(tk.INSERT,ENTER_COMMAND)
-
 
 
 
