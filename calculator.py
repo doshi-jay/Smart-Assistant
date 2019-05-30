@@ -1,10 +1,11 @@
 import math
+import re
 
-class calculator:
+class Calculator:
 	
 	# Based on the operator, calls the corresponding 
 	# operation
-	def calculate(self, operand1, operand2, operator):
+	def arithmetic_functions(self, operand1, operand2, operator):
 		if operator == '+':
 			return self.add(operand1, operand2)
 		elif operator == '-':
@@ -13,10 +14,27 @@ class calculator:
 			return self.multiply(operand1, operand2)
 		elif operator == '/':
 			return self.divide(operand1, operand2)
-		elif operator == '%':
+		elif operator == 'mod':
 			return self.modulus(operand1, operand2)
 		elif operator == '**':
 			return self.power(operand1, operand2)
+		elif operator == '%':
+			print ('perce')
+			return self.percentage(operand1, operand2)
+
+	def trigonometric_functions(self, expression):
+		if (re.search("sin", expression)):
+			return self.sine(int(expression.replace("sin", "").strip()))
+		elif (re.search("cos", expression)):
+			return self.cosine(int(expression.replace("cos", "").strip()))
+		elif (re.search("tan", expression)):
+			return self.tan(int(expression.replace("tan", "").strip()))
+		elif (re.search("cosec", expression)):
+			return self.cosecant(int(expression.replace("cosec", "").strip()))
+		elif (re.search("sec", expression)):
+			return self.secant(int(expression.replace("sec", "").strip()))
+		elif (re.search("cot", expression)):
+			return self.cot(int(expression.replace("cot", "").strip()))
 
 	def add(self, operand1, operand2):
 		return operand1 + operand2
@@ -39,6 +57,9 @@ class calculator:
 	def power(self, base, power):
 		return base**power
 
+	def percentage(self, percent, whole):
+		 return (percent*whole)/100
+
 	def sine(self, operand):
 		return math.sin(operand)
 
@@ -54,8 +75,5 @@ class calculator:
 	def cosecant(self, operand):
 		return (1/self.sine(operand))
 
-	def cotan(self, operand):
+	def cot(self, operand):
 		return (1/self.tan(operand))
-
-	def percentage(self, percent, whole):
-		 return (percent*whole)/100

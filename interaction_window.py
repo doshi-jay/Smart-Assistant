@@ -13,7 +13,7 @@ WELCOME_TEXT = "Welcome User!"
 def process_input(input_text):
 	# This is where the call to the controller must be made
 	controller = Controller()
-	return controller.interface(input_text)
+	return controller.interface(input_text.lower())
 
 
 def control():
@@ -28,10 +28,10 @@ def control():
 	
 
 def update_output(input_text, result):
-	output_text = "User: " + input_text + "\n" + "SAss: " + result + "\n"
+	output_text = "User: " + input_text + "\n" + "SAss: " + str(result) + "\n"
 	output.configure(state=tk.NORMAL)
 	output.insert(tk.INSERT, "User: " + input_text.rstrip() + "\n", "input")
-	output.insert(tk.INSERT, "SAss: " + result.rstrip() + "\n", "output")
+	output.insert(tk.INSERT, "SAss: " + str(result).rstrip() + "\n", "output")
 	output.tag_config('input', foreground='darkblue')
 	output.tag_config('output', foreground='green')
 	output.configure(state=tk.DISABLED)
