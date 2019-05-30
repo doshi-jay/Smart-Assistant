@@ -56,3 +56,6 @@ class calculator:
 
 	def cotan(self, operand):
 		return (1/self.tan(operand))
+
+	def percentage(self, percent, whole):
+		 return (percent*whole)/100
