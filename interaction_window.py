@@ -10,6 +10,35 @@ OUTPUT = "Output:\n"
 TITLE = "Smart Assistant!"
 WELCOME_TEXT = "Welcome User!"
 
+
+def get_help_heading(help_window):
+	help_heading_frame = tk.Frame(help_window)
+	help_heading_frame.pack(fill=tk.X)
+
+	help_heading_frame.columnconfigure(0, weight=1)
+
+	help_heading_label = Label(help_heading_frame, text='----------   HELP   ----------')
+	help_heading_label.configure(font=("Cambria", 14))
+	help_heading_label.grid(row=0, column=0, sticky=tk.W+tk.E, padx = 60, pady=10)
+
+def open_help():
+	help_window = tk.Toplevel(root)
+
+	get_help_heading(help_window)
+
+	calculator_frame = tk.Frame(help_window)
+	calculator_frame.pack(fill=tk.X)
+	
+	calculator_key = Label(calculator_frame, text = "> To perform arithmetic calculations    |")
+	calculator_value = Label(calculator_frame, text="Calculator: <operand> <operator> <operand>")
+
+	calculator_frame.columnconfigure(0, weight=1)	
+	calculator_frame.columnconfigure(1, weight=1)
+
+	calculator_key.grid(row=0, column=0, sticky=tk.W, padx=10)
+	calculator_value.grid(row=0, column=1, sticky=tk.E+tk.W, padx=10, pady=10)
+
+
 def process_input(input_text):
 	# This is where the call to the controller must be made
 	controller = Controller()
@@ -51,7 +80,7 @@ button_frame.pack(fill=tk.X, side=tk.TOP)
 
 hello_label = Label(button_frame, text=WELCOME_TEXT)
 hello_label.configure(font=("Cambria", 11))
-help_button = tk.Button(button_frame, text='Help', bg="black", fg="white")
+help_button = tk.Button(button_frame, text='Help', bg="black", fg="white", command = open_help)
 
 button_frame.columnconfigure(0, weight=1)
 button_frame.columnconfigure(1, weight=1)
