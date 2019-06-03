@@ -13,12 +13,10 @@ class Controller:
 		calculator = Calculator()
 		expression = input_.strip()
 		
-		if (re.search("(.*[\+\-\*\/%].*)", expression) or re.search("mod", expression)):
-			exp = expression.split(" ")
-			operand1 = exp[0]
-			operator = exp[1]
-			operand2 = exp[2]
-			return calculator.arithmetic_functions(float(operand1), float(operand2), operator)
+		if (re.search("(\d*\*{2}\d*)|(\d*mod\d*)", expression)):
+			return calculator.arithmetic_functions(expression.replace(" ", ""))
+		elif (re.search("(\d*[\+\-\*\/%]\d*)", expression) or re.search("mod", expression)):
+			return calculator.arithmetic_functions(expression.replace(" ", ""))
 		
 		elif (re.search("(sin\(\d\))|([cos\(\d\)])|(tan\(\d\))|(sec\(\d\))|(cosec\(\d\))|(cot\(\d\))", expression)):
 			expression = expression.replace("(", " ")

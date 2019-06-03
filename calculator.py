@@ -5,21 +5,41 @@ class Calculator:
 	
 	# Based on the operator, calls the corresponding 
 	# operation
-	def arithmetic_functions(self, operand1, operand2, operator):
-		if operator == '+':
-			return self.add(operand1, operand2)
-		elif operator == '-':
-			return self.subtract(operand1, operand2)
-		elif operator == '*':
-			return self.multiply(operand1, operand2)
-		elif operator == '/':
-			return self.divide(operand1, operand2)
-		elif operator == 'mod':
-			return self.modulus(operand1, operand2)
-		elif operator == '**':
+	def arithmetic_functions(self, expression):
+		if re.search("(\d*\*{2}\d*)", expression):
+			exp = expression.partition("**")
+			operand1 = int(exp[0])
+			operand2 = int(exp[2])
 			return self.power(operand1, operand2)
-		elif operator == '%':
-			print ('perce')
+		elif re.search("(\d*[+]\d*)", expression):
+			exp = expression.partition("+")
+			operand1 = int(exp[0])
+			operand2 = int(exp[2])
+			return self.add(operand1, operand2)
+		elif re.search("(\d*[-]\d*)", expression):
+			exp = expression.partition("-")
+			operand1 = int(exp[0])
+			operand2 = int(exp[2])
+			return self.subtract(operand1, operand2)
+		elif re.search("(\d*[*]\d*)", expression):
+			exp = expression.partition("*")
+			operand1 = int(exp[0])
+			operand2 = int(exp[2])
+			return self.multiply(operand1, operand2)
+		elif re.search("(\d*[/]\d*)", expression):
+			exp = expression.partition("/")
+			operand1 = int(exp[0])
+			operand2 = int(exp[2])
+			return self.divide(operand1, operand2)
+		elif re.search("(\d*mod\d*)", expression):
+			exp = expression.partition("mod")
+			operand1 = int(exp[0])
+			operand2 = int(exp[2])
+			return self.modulus(operand1, operand2)
+		elif re.search("(\d*[%]\d*)", expression):
+			exp = expression.partition("%")
+			operand1 = int(exp[0])
+			operand2 = int(exp[2])
 			return self.percentage(operand1, operand2)
 
 	def trigonometric_functions(self, expression):
